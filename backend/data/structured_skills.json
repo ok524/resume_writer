@@ -1,0 +1,57 @@
+{
+	"Industry Knowledge": {
+		"Data Structures": [],
+		"Requirement Analysis": ["User requirement", "specification"],
+		"Software Design": ["Design"],
+		"Software Development": ["Coding", "Programming", "development", "new features", "implementation"],
+		"Software Maintenance": ["Maintenance", "Debug", "troubleshooting"],
+		"Software Testing": ["Testing", "UAT", "diagnosis"],
+		"System Support": [],
+		"Documentation": ["report", "technical writing"]
+	},
+	"Tools & Technologies": {
+		"Web Technologies": ["HTML", "HTML5", "CSS", "CSS3", "AJAX", "jQuery", "Bootstrap", "UX", "UI", "Web Interface", "JavaScript"],
+		"Back-end Technologies": ["C#", "C#.Net", ".NET", "Node.js", "PHP", "JAVA", "C", "C++", "Python", "JSP", "VB.Net", "REST API"],
+		"Mobile Application Development": ["mobile", "android studio", "swift"],
+		"Version Control": ["Git"],
+		"IoT": [],
+		"Big Data Analytics": ["Data Mining", "Big Data", "Visualization", "SPSS"],
+		"Machine Learning": ["Computer Vision", "Tensorflow", "Keras", "NLP", "Deep Learning"],
+		"Cloud computing": ["Hadoop", "Spark"],
+		"Database System": ["MySQL", "MSSQL", "MS SQL", "SQL", "Crystal Report", "Oracle", "NoSQL"],
+		"Operating System": ["Windows", "Linux"]
+	},
+	"Personality": {
+		"Teamwork": ["Team player", "cooperative"],
+		"Problem Solving": [],
+		"Communication": [],
+		"Responsible": [],
+		"Self-motivated": [],
+		"Ability to work under pressure": ["project deadline", "pressure"],
+		"Hardworking": [],
+		"independent": [],
+		"innovative": ["Creative"]		
+	},
+	"Language": {
+		"English": [],
+		"Chinese": [],
+		"Mandarin": []
+	},
+	"Educational Background": {
+		"IT-related Degree": ["Computer Science", "Computer Engineering", "Information Engineering"],
+		"Degree": ["University degree"]
+	},
+	"Experience": {
+		"fresh graduate": [],
+		"1 years": [],
+		"2 years": [],
+		"3 years": [],
+		"4 years": [],
+		"5 years": [],
+		"6 years": [],
+		"7 years": [],
+		"8 years": [],
+		"9 years": [],
+		"10 years": []
+	}
+}

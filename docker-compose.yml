@@ -5,6 +5,7 @@ services:
     container_name: mongodb
     image: mongo:latest
     environment:
+      - TZ=Asia/Hong_Kong
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=xaUBJZbG5v{W*[{&
     ports:
@@ -13,6 +14,8 @@ services:
       - mongodb_data_container:/data/db
   backend:
     container_name: backend
+    environment:
+      - TZ=Asia/Hong_Kong
     build:
       context: ./backend
       dockerfile: Dockerfile

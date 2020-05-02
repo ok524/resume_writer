@@ -3,7 +3,7 @@ from flask_restful import Resource
 from database.documents.user import User as UserModel
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 import datetime
-from mongoengine.errors import NotUniqueError, DoesNotExist
+from mongoengine.errors import NotUniqueError, DoesNotExist, ValidationError
 
 
 class User(Resource):
@@ -22,7 +22,8 @@ class User(Resource):
 class Register(Resource):
     def post(self):
         try:
-            user = UserModel(**request.get_json(force=True))
+            user_info = request.get_json(force=True)
+            user = UserModel(**user_info)
             user.hash_password()
             user.save()
             expires = datetime.timedelta(days=7)
@@ -30,6 +31,10 @@ class Register(Resource):
             return {'token': access_token}
         except NotUniqueError:
             return {'error': 'Email is already in use'}
+        except ValidationError:
+            return {'error': 'Invalid email address: ' + user_info['email']}
+        except ValueError as error:
+            return {'error': str(error)}
 
 
 class Login(Resource):

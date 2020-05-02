@@ -253,8 +253,12 @@ const NewbieResumeSteps = ({ history, location, dispatch, auth, resume, match })
     }).then(res => res.json())
       .then(jobAdsData => {
         toast.dismiss()
-        setShowJobAdsSummary(true);
-        setJobAdsData(jobAdsData);
+        if (!jobAdsData['message']) {
+          setShowJobAdsSummary(true);
+          setJobAdsData(jobAdsData);
+        } else {
+          toast.error('The url is not supported.', { autoClose: true });
+        }
       })
 
   }
@@ -525,7 +529,7 @@ const NewbieResumeSteps = ({ history, location, dispatch, auth, resume, match })
                             {area}
                           </TableCell>
                           <TableCell align="left">
-                            {(Object.keys(jobAdsData).length !== 0) ? Object.keys(jobAdsData.requirements[area]).join(', ') : ''}
+                            {(Object.keys(jobAdsData).length !== 0) && area in jobAdsData.requirements ? Object.keys(jobAdsData.requirements[area]).join(', ') : ''}
                           </TableCell>
                         </TableRow>
                       ))}

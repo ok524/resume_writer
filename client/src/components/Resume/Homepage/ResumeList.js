@@ -23,6 +23,7 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import Typography from '@material-ui/core/Typography';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import { toast } from 'react-toastify';
 
 const styles = theme => ({
 	section: {
@@ -55,6 +56,15 @@ class ResumeList extends React.Component {
 			],
 			data: []
 		}
+
+	}
+
+	static getDerivedStateFromProps(props, state) {
+		if (!props.auth || !props.auth.isAuthenticated) {
+			toast.info('Please login first.');
+			props.history.push('/login')
+		}
+		return null;
 	}
 
 	render() {

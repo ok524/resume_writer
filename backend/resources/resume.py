@@ -39,7 +39,9 @@ class Resume(Resource):
     def post(self):
         user_id = get_jwt_identity()
         user = UserModel.objects.get(id=user_id)
-        new_resume = ResumeModel(**request.get_json(force=True), created_by=user_id)
+        resume_info = request.get_json(force=True)
+        resume_info['created_by'] = user_id
+        new_resume = ResumeModel(**request.get_json(force=True))
         new_resume.save()
         user.update(push__resumes=new_resume)
         user.save()

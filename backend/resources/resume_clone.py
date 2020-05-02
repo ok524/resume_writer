@@ -16,4 +16,7 @@ class ResumeClone(Resource):
         new_resume.created_at = None
         new_resume.updated_at = None
         new_resume.save()
+        user = new_resume.created_by
+        user.update(push__resumes=new_resume)
+        user.save()
         return {'id': str(new_resume.id)}

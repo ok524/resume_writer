@@ -18,9 +18,6 @@ $ cd Resume4Jobs/
 Update the domain name at [client/.env](client/.env)
 ```
 DOMAIN=<domain-name>
-PUBLIC_URL=http://$DOMAIN
-REACT_APP_WEB_API_URL=http://$DOMAIN:5000
-REACT_APP_LANG_CHECK_API_URL=http://$DOMAIN:8081
 ```
 Update MongoDB connection string at [backend/config/app.conf](backend/config/app.conf)
 ```

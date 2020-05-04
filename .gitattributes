@@ -1,1 +1,1 @@
-/backend/language_model/pytorch_model.bin filter=lfs diff=lfs merge=lfs -text
+/backend/language_model/*.bin filter=lfs diff=lfs merge=lfs -text

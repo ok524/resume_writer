@@ -18,11 +18,11 @@ export const Header = ({
 
 			<div id="contactDetails">
 				<ul>
-					<li>Email: <a href="mailto:joe@bloggs.com" target="_blank" rel="noopener noreferrer">{header.email}</a></li>
-					<li>Website: <a href="http://www.bloggs.com">{header.website}</a></li>
-					<li>Mobile: {header.phone}</li>
-					<li>GitHub: {header.github}</li>
-					<li>LinkedIn: {header.linkedin}</li>
+					<li>Email: <a href={`mailto:${header.email}?subject=Interview%20Request`} target="_blank" rel="noopener noreferrer">{header.email}</a></li>
+					<li>Website: <a href={header.website}>{header.website}</a></li>
+					<li>Mobile: <a href={`tel:${header.phone}`}>{header.phone}</a></li>
+					<li>GitHub: <a href={header.github}>{header.github}</a></li>
+					<li>LinkedIn: <a href={header.linkedin}>{header.linkedin}</a></li>
 					<li>Address: {header.address}</li>
 				</ul>
 			</div>

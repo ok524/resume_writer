@@ -23,7 +23,7 @@ Update MongoDB connection string at [backend/config/app.conf](backend/config/app
 ```
 #MongoDB Setting
 MONGODB_SETTINGS = {
-    'host': 'mongodb://root:xaUBJZbG5v{W*[{&@14.199.43.160:27017/resume4Job?authSource=admin',
+    'host': 'mongodb://root:xaUBJZbG5v{W*[{&@<server-ip>:27017/resume4Job?authSource=admin',
 }
 ```
 ### Build & Run Docker Images

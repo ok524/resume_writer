@@ -13,7 +13,7 @@ export const Header = ({
 
 			<div id="name">
 				<h1 style={{ fontFamily: font }}>{header.name}</h1>
-				<h2 style={{ fontFamily: font }}>Software Engineer</h2>
+				<h2 style={{ fontFamily: font }}>{header.resumetitle}</h2>
 			</div>
 
 			<div id="contactDetails">

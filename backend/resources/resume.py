@@ -24,7 +24,7 @@ class Resume(Resource):
             for resume in resumes:
                 result.append({
                     'id': str(resume.id),
-                    'name': 'My Resume',
+                    'resumetitle': str(resume.resumetitle),
                     'job_position': 'Software Engineer',
                     'created_at': resume.created_at.strftime('%Y-%m-%d-%H:%M:%S'),
                     'updated_at': resume.updated_at.strftime('%Y-%m-%d-%H:%M:%S')

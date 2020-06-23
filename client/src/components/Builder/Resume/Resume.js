@@ -55,6 +55,7 @@ const Resume = ({ auth, font, template, order, paperSize, match, dispatch, histo
             .then(res => JSON.parse(res['resume']))
             .then((resume) => {
               resume.header = user;
+              resume.header.resumetitle = resume.resumetitle;
               dispatch(updateResume(resume));
             });
         });

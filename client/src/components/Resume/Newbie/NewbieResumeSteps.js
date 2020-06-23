@@ -432,6 +432,12 @@ const NewbieResumeSteps = ({ history, location, dispatch, auth, resume, match })
     setResumeData(newResumeData);
   }
 
+  const updateName = (resumetitle) => {
+    var newResumeData = { ...resumeData };
+    newResumeData.resumetitle = resumetitle;
+    setResumeData(newResumeData);
+  }
+
   const saveResume = () => {
     if (resumeId) {
       fetchUpdateResume()
@@ -559,7 +565,14 @@ const NewbieResumeSteps = ({ history, location, dispatch, auth, resume, match })
                 </TableContainer>
               </div>
             ) : activeStep === 1 ?
+                <>
                 <Editor id={uuid()} name="objective" label="objective" height="200" value={resumeData.objectives.objective || ''} onChange={(newValue) => updateResumeValues("objectives", 'objective', newValue)} />
+
+                <Typography variant="h6" align="left">
+                  Resume Title
+                </Typography>
+                <TextField key="name" type="text" name="name" label="Resume Title" margin="normal" variant="outlined" value={resumeData.resumetitle || uuid()} onChange={(e) => updateName(e.target.value)} required fullWidth />
+                </>
                 : activeStep === 2 ? (
                   <div>
                     <Fab variant="extended" color="primary" className={classes.fab} onClick={handleDialogOpen}>

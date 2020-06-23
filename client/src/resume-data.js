@@ -14,6 +14,7 @@ const Resume = {
   objectives: {
     objective: null
   },
+  resumetitle: null,
   education: [
     {
       institutionName: null,

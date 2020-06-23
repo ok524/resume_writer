@@ -49,8 +49,8 @@ class ResumeList extends React.Component {
 		super(props);
 		this.state = {
 			columns: [
-				{ title: 'Resume Title', field: 'name' },
-				{ title: 'Job Position', field: 'job_position' },
+				{ title: 'Resume Title', field: 'resumetitle' },
+				// { title: 'Job Position', field: 'job_position' },
 				{ title: 'Updated At', field: 'updated_at', editable: 'never' },
 				{ title: 'Created At', field: 'created_at', editable: 'never' },
 			],

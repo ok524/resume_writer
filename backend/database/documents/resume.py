@@ -17,6 +17,10 @@ class Objectives(db.EmbeddedDocument):
     objective = db.StringField()
 
 
+class Resumetitles(db.EmbeddedDocument):
+    resumetitle = db.StringField()
+
+
 class Education(db.EmbeddedDocument):
     institutionName = db.StringField()
     educationLevel = db.StringField()
@@ -56,6 +60,7 @@ class Resume(db.Document):
     jobAds = db.EmbeddedDocumentField(JobAds)
     header = db.EmbeddedDocumentField(Header)
     objectives = db.EmbeddedDocumentField(Objectives)
+    resumetitle = db.StringField()
     education = db.ListField(db.EmbeddedDocumentField(Education))
     experience = db.ListField(db.EmbeddedDocumentField(Experience))
     technicalSkills = db.ListField(db.EmbeddedDocumentField(TechnicalSkills))

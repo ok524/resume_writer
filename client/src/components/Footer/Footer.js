@@ -61,6 +61,8 @@ const Footer = ({history}) => {
                         <img src="/assets/images/logo.svg" alt="logo" className={classes.footerLogo} />
                     </Grid>
                     <Grid item className={classes.gridItem} md={4}>
+                        { null &&
+                        <>
                         <Typography className={classes.footerLinkTitle} variant="h5" align="left" gutterBottom>
                             NAVIGATE
                         </Typography>
@@ -74,6 +76,8 @@ const Footer = ({history}) => {
                                     {page.name}
                                 </Link>) : null
                         ))}
+                        </>
+                        }
                     </Grid>
                 </Grid>
                 <Typography className={classes.copyright} variant="body2" align="center" gutterBottom>

@@ -150,7 +150,7 @@ class ResumeList extends React.Component {
 							{
 								icon: tableIcons.Edit,
 								tooltip: 'Edit Resume',
-								onClick: (event, rowData) => history.push(`/resume/${rowData.id}/edit/step1`)
+								onClick: (event, rowData) => history.push(`/resume/${rowData.id}/edit/step2`)
 							},
 							{
 								icon: tableIcons.Export,

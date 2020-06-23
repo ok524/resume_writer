@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Button from '@material-ui/core/Button';
+
 import { paperSizes } from '../../../utils/pageSizes'
 import { updateResume } from '../../../action/builder';
 import {
@@ -16,7 +20,17 @@ import {
   defaultResumeOrder,
 } from '../../../utils/resume';
 
-const Resume = ({ auth, font, template, order, paperSize, match, dispatch }) => {
+const useStyles = makeStyles(theme => ({
+  buttonSection: {
+    textAlign: 'left',
+    marginTop: theme.spacing(1),
+    padding: '0',
+    maxWidth: '210mm',
+  },
+}));
+
+const Resume = ({ auth, font, template, order, paperSize, match, dispatch, history }) => {
+  const classes = useStyles();
 
   useEffect(() => {
     if (!match.params) {
@@ -55,8 +69,15 @@ const Resume = ({ auth, font, template, order, paperSize, match, dispatch }) => 
   const Certifications = React.lazy(() => import(`./Templates/${template}/Certifications/Certifications`))
   const TechnicalSkills = React.lazy(() => import(`./Templates/${template}/TechnicalSkills/TechnicalSkills`))
 
+  const handleBack = () => {
+    history.push(`/resume/${match.params.resumeId}/edit/step${5}`);
+  };
+
   return (
     <>
+      <Container className={classes.buttonSection}>
+        <Button onClick={handleBack} size="large">Back</Button>
+      </Container>
       <link rel="stylesheet" type="text/css" href={`${process.env.PUBLIC_URL}/resume-templates/${template}.css`} />
       <div className={classNames('react-resume', paperSize.tag)}>
         <div

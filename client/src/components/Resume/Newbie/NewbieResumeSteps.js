@@ -212,7 +212,7 @@ function getSkillMarks(minValue, maxValue, step) {
 
 const NewbieResumeSteps = ({ history, location, dispatch, auth, resume, match }) => {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = React.useState((match.params.step) ? (parseInt(match.params.step.slice(4)) - 1) : 1);
   const [resumeId, setResumeId] = React.useState(null);
   const [dialogOpen, setDialogOpen] = React.useState(false);
   const [recordAddNum, setRecordAddNum] = React.useState(0);
@@ -267,7 +267,7 @@ const NewbieResumeSteps = ({ history, location, dispatch, auth, resume, match })
     if (match.params.step) {
       setActiveStep(parseInt(match.params.step.slice(4)) - 1);
     } else {
-      setActiveStep(0);
+      setActiveStep(1);
     }
   }, [match.params.step]);
 
@@ -484,9 +484,12 @@ const NewbieResumeSteps = ({ history, location, dispatch, auth, resume, match })
             </DialogActions>
           </Dialog>
 
-          <Stepper className={isMobile ? classes.stepperMobile : classes.stepperDesktop} activeStep={activeStep} alternativeLabel>
-            {steps.map(label => (
-              <Step key={label}>
+          {/* activeStep={activeStep - 1} is to skip the "Job URL" step */}
+          <Stepper className={isMobile ? classes.stepperMobile : classes.stepperDesktop} activeStep={activeStep - 1} alternativeLabel>
+            {steps.map((label, idx) => (
+              (idx == 0)
+              ? null
+              : <Step key={label}>
                 <StepLabel>{label}</StepLabel>
               </Step>
             ))}
@@ -494,7 +497,7 @@ const NewbieResumeSteps = ({ history, location, dispatch, auth, resume, match })
           <Typography className={classes.pageTitle} variant="h4" align="center" gutterBottom>{getPageTitles(activeStep)}</Typography>
           <Typography className={classes.pageDesciption} variant="h6" align="center" gutterBottom>{getPageDescription(activeStep)}</Typography>
           <form fullwidth="true" autoComplete="off">
-            {activeStep === 0 ? (
+            {activeStep === 0 ? (null &&
               <div>
                 <Grid container spacing={3} justify="space-between" alignItems="center">
                   <Grid item lg={10} xs={10}>
@@ -898,9 +901,9 @@ const NewbieResumeSteps = ({ history, location, dispatch, auth, resume, match })
                 ) : 'Out of index'}
           </form>
           <Container className={classes.buttonSection}>
-            <Button className={classes.backButton} onClick={handleBack} disabled={activeStep === 0} size="large">Back</Button>
+            <Button className={classes.backButton} onClick={handleBack} disabled={activeStep < 2} size="large">Back</Button>
             <Button onClick={handleNext} size="large" variant="contained" color="primary">
-              {activeStep < 5 ? 'Next' : 'Finish'}
+              {activeStep < 4 ? 'Next' : 'Preview'}
             </Button>
           </Container>
         </Container>

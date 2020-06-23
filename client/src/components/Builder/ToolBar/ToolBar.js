@@ -32,10 +32,14 @@ const useStyles = makeStyles(theme => ({
   },
   drawerOpen: {
     width: drawerWidth,
+    marginTop: '58px',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    [theme.breakpoints.up('sm')]: {
+      marginTop: '66px',
+    },
   },
   drawerClose: {
     transition: theme.transitions.create('width', {
@@ -44,7 +48,9 @@ const useStyles = makeStyles(theme => ({
     }),
     overflowX: 'hidden',
     width: theme.spacing(7) + 1,
+    marginTop: '58px',
     [theme.breakpoints.up('sm')]: {
+      marginTop: '66px',
       width: '60px' //theme.spacing(9) + 1,
     },
   },

@@ -18,12 +18,37 @@ export const Header = ({
 
 			<div id="contactDetails">
 				<ul>
-					<li>Email: <a href={`mailto:${header.email}?subject=Interview%20Request`} target="_blank" rel="noopener noreferrer">{header.email}</a></li>
-					<li>Website: <a href={header.website}>{header.website}</a></li>
-					<li>Mobile: <a href={`tel:${header.phone}`}>{header.phone}</a></li>
-					<li>GitHub: <a href={header.github}>{header.github}</a></li>
-					<li>LinkedIn: <a href={header.linkedin}>{header.linkedin}</a></li>
-					<li>Address: {header.address}</li>
+
+					{
+						(header.email)
+						? <li>Email: <a href={`mailto:${header.email}?subject=Interview%20Request`} target="_blank" rel="noopener noreferrer">{header.email}</a></li>
+						: null
+					}
+					{
+						(header.website)
+						? <li>Website: <a href={header.website}>{header.website}</a></li>
+						: null
+					}
+					{
+						(header.phone)
+						? <li>Mobile: <a href={`tel:${header.phone}`}>{header.phone}</a></li>
+						: null
+					}
+					{
+						(header.github)
+						? <li>GitHub: <a href={header.github}>{header.github}</a></li>
+						: null
+					}
+					{
+						(header.linkedin)
+						? <li>LinkedIn: <a href={header.linkedin}>{header.linkedin}</a></li>
+						: null
+					}
+					{
+						(header.address)
+						? <li>Address: {header.address}</li>
+						: null
+					}
 				</ul>
 			</div>
 			<div className="clear"></div>

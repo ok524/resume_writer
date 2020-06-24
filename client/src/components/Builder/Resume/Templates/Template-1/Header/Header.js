@@ -15,36 +15,56 @@ export const Header = ({
   <header className="resume-header" style={{ fontFamily: font }}>
     <h1 style={{ fontFamily: font }}>{header.name}</h1>
     <ul>
-      <li data-testid="Email">
-        <a href={`mailto:${header.email}?subject=Interview%20Request`}>
-          <img src={mailIcon} className="header-icon normal-icon" alt="Mail Icon" />
-          {header.email}
-        </a>
-      </li>
-      <li data-testid="Phone">
-        <a href={`tel:${header.phone}`}>
-          <img src={phoneIcon} className="header-icon normal-icon" alt="Phone Icon" />
-          {header.phone}
-        </a>
-      </li>
-      <li data-testid="Github">
-        <a href={header.github} target="_new">
-          <img src={githubIcon} className="header-icon normal-icon" alt="Github Icon" />
-          {header.github}
-        </a>
-      </li>
-      <li data-testid="LinkedIn">
-        <a href={header.linkedin} target="_new">
-          <img src={linkedinIcon} className="header-icon normal-icon" alt="LinkedIn Icon" />
-          {header.linkedin}
-        </a>
-      </li>
-      <li data-testid="Website">
-        <a href={header.website} target="_new">
-          <img src={websiteIcon} className="header-icon normal-icon" alt="Website Icon" />
-          {header.website}
-        </a>
-      </li>
+      {
+        (header.email)
+        ? <li data-testid="Email">
+          <a href={`mailto:${header.email}?subject=Interview%20Request`}>
+            <img src={mailIcon} className="header-icon normal-icon" alt="Mail Icon" />
+            {header.email}
+          </a>
+        </li>
+        : null
+      }
+      {
+        (header.phone)
+        ? <li data-testid="Phone">
+          <a href={`tel:${header.phone}`}>
+            <img src={phoneIcon} className="header-icon normal-icon" alt="Phone Icon" />
+            {header.phone}
+          </a>
+        </li>
+        : null
+      }
+      {
+        (header.github)
+        ? <li data-testid="Github">
+          <a href={header.github} target="_new">
+            <img src={githubIcon} className="header-icon normal-icon" alt="Github Icon" />
+            {header.github}
+          </a>
+        </li>
+        : null
+      }
+      {
+        (header.linkedin)
+        ? <li data-testid="LinkedIn">
+          <a href={header.linkedin} target="_new">
+            <img src={linkedinIcon} className="header-icon normal-icon" alt="LinkedIn Icon" />
+            {header.linkedin}
+          </a>
+        </li>
+        : null
+      }
+      {
+        (header.website)
+        ? <li data-testid="Website">
+          <a href={header.website} target="_new">
+            <img src={websiteIcon} className="header-icon normal-icon" alt="Website Icon" />
+            {header.website}
+          </a>
+        </li>
+        : null
+      }
     </ul>
     <ul data-testid="Address">
       <li>{header.address}</li>

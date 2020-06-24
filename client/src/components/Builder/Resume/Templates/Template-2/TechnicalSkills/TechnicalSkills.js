@@ -13,7 +13,7 @@ const TechnicalSkills = ({ techSkills, showSkillLevel, font }) => (
     <div className="sectionContent">
       {techSkills.map(
         (skill, index) => skill.isVisble !== false &&
-          (index < 2 && (
+          (true && (
             <article key={index}>
               <h2 style={{ fontFamily: font }}>
                 {skill.category}

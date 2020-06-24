@@ -17,7 +17,7 @@ const TechnicalSkills = ({ techSkills, showSkillLevel, font }) => (
     <div className="grid-container">
       {techSkills.map(
         (skill, index) => skill.isVisble !== false &&
-          (index < 2 && (
+          (true && (
             <div key={index} className={`grid-column-${index + 1}`}>
               <h3 style={{ fontFamily: font }}>
                 {skill.category}

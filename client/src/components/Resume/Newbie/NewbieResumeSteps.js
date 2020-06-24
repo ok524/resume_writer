@@ -39,6 +39,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import SearchIcon from '@material-ui/icons/Search';
+import EditIcon from '@material-ui/icons/Edit';
+import CheckIcon from '@material-ui/icons/Check';
 import { toast } from 'react-toastify';
 
 const useStyles = makeStyles(theme => ({
@@ -146,7 +148,10 @@ const useStyles = makeStyles(theme => ({
   },
   backButton: {
     marginRight: theme.spacing(1)
-  }
+  },
+  newCategoryButton: {
+    marginTop: theme.spacing(1)
+  },
 }));
 
 function getStepTitles() {
@@ -332,6 +337,7 @@ const NewbieResumeSteps = ({ history, location, dispatch, auth, resume, match })
   const [resumeData, setResumeData] = React.useState(resume);
   const [jobAdsData, setJobAdsData] = React.useState({});
   const [showJobAdsSummary, setShowJobAdsSummary] = React.useState(false);
+  const [currentlyEditing, setCurrentlyEditing] = React.useState(false);
 
   const defaultEducationItem = DefaultResume.education[0];
   const defaultExperienceItem = DefaultResume.experience[0];
@@ -418,6 +424,31 @@ const NewbieResumeSteps = ({ history, location, dispatch, auth, resume, match })
       newResumeData.technicalSkills[i].keywords.pop();
       setResumeData(newResumeData);
     }
+  };
+
+  const updateCategoryName = (e, categoryIdx) => {
+    var newResumeData = { ...resumeData };
+    newResumeData.technicalSkills[categoryIdx].category = e.target.value;
+    setResumeData(newResumeData);
+  };
+
+  const deleteCategory = (categoryIdx) => {
+    var newResumeData = { ...resumeData };
+    console.log(`categoryIdx: ${categoryIdx}`)
+    newResumeData.technicalSkills.splice(categoryIdx, 1);
+    setResumeData(newResumeData);
+  };
+
+  const addCategory = () => {
+    var newResumeData = { ...resumeData };
+    newResumeData.technicalSkills.push({
+      category: 'Unnamed category',
+      keywords: [
+        { name: null, level: 5 }
+      ],
+      isVisible: true,
+    },)
+    setResumeData(newResumeData);
   };
 
   const updateSkillName = (e, categoryIdx, keywordIdx) => {
@@ -727,7 +758,18 @@ const NewbieResumeSteps = ({ history, location, dispatch, auth, resume, match })
                       <Container key={categoryIdx} fullwidth="true" className={classes.formContainer}>
                         <Container className={classes.sectionTitleContainer}>
                           <Typography variant="h6" align="left" className={classes.sectionTitleInline} gutterBottom>
-                            {categorizedSkill.category}
+                            {
+                            currentlyEditing
+                            ? (<>
+                              <TextField type="text" name="categoryname" onChange={e => updateCategoryName(e, categoryIdx)} value={categorizedSkill.category} />
+                              <CheckIcon onClick={e => setCurrentlyEditing(false)} />
+                            </>)
+                            : (<>
+                              {categorizedSkill.category}
+                              <EditIcon onClick={e => setCurrentlyEditing(true)} />
+                              <DeleteIcon onClick={e => deleteCategory(categoryIdx)} />
+                            </>)
+                            }
                           </Typography>
                           <div className={classes.sectionTitleButtonContainer}>
                             <Button variant="outlined" startIcon={<AddIcon />} color="primary" className={classes.sectionTitleButton} onClick={() => addSkill(categoryIdx)}>Add</Button>
@@ -738,7 +780,7 @@ const NewbieResumeSteps = ({ history, location, dispatch, auth, resume, match })
                           {categorizedSkill.keywords.map((keyword, keywordIdx) => (
                             <Grid key={keywordIdx} container justify="space-between" alignItems="center" className={isMobile ? classes.gridContainerMobile : classes.gridContainerDesktop}>
                               <Grid item lg={6} xs={12} className={classes.gridItem}>
-                                <TextField type="text" name="name" label="Technical Skill" variant="outlined" value={keyword.name || ''} onChange={(e) => updateSkillName(e, categoryIdx, keywordIdx)} fullWidth />
+                                <TextField type="text" name="name" label="Skill" variant="outlined" value={keyword.name || ''} onChange={(e) => updateSkillName(e, categoryIdx, keywordIdx)} fullWidth />
                               </Grid>
                               <Grid item lg={5} xs={12} className={classes.gridItem}>
                                 <Slider name="marks" step={1} marks={marks} value={keyword.level} valueLabelDisplay="auto" min={0} max={10} onChangeCommitted={(e, level) => updateSkillLevel(categoryIdx, keywordIdx, level)} />
@@ -746,8 +788,14 @@ const NewbieResumeSteps = ({ history, location, dispatch, auth, resume, match })
                             </Grid>
                           ))}
                         </Grid>
+                        <Divider light />
                       </Container>
                     ))}
+                    <Container fullwidth="true" className={classes.formContainer}>
+                      <div className={classes.newCategoryButton}>
+                        <Button variant="outlined" color="primary" className={classes.sectionTitleButton} onClick={e => addCategory()}>Add new category</Button>
+                      </div>
+                    </Container>
                   </div>
                 ) : activeStep === 5 ? (
                   <Container fullwidth="true">

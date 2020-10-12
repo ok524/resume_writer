@@ -21,7 +21,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - '5000:5000'
-    command: /usr/local/bin/gunicorn -w 8 -b :5000 backend:api
+    command: /usr/local/bin/gunicorn -w 8 -b :5000 api:app
   language_tool:
     container_name: language_tool
     build:
